@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :products
+  resources :line_items, only: :destroy
+  resources :orders, only: [:index]
+
   mount RailsEventStore::Browser => '/res' if Rails.env.development?
 
   resources :products, only: [:index, :new, :create, :destroy]

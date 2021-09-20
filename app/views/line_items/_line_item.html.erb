@@ -1,0 +1,5 @@
+<tr>
+  <td><%= line_item.product.code %></td>
+  <td><%= line_item.quantity %></td>
+  <td><%= link_to 'remove', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

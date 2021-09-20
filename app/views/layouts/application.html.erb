@@ -11,6 +11,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div>
+      <%= yield %>
+    </div>
+    <div>
+      <%= render 'orders/current', order: @order %>
   </body>
 </html>

@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Your current order:</h3>
+
+<table>
+  <tbody>
+    <% order.line_items.includes(:product).each do |item| %>
+      <%= render item %>
+    <% end %>
+  </tbody>
+</table>

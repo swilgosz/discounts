@@ -6,6 +6,7 @@ module Ordering
       def call(event)
         line_item = create_item(event.data)
         calculate_total(line_item.order)
+        apply_discounts(line_item.order)
       end
 
       private
@@ -18,6 +19,12 @@ module Ordering
           price: data[:price],
           quantity: data[:quantity]
         )
+      end
+
+      def apply_discounts(order)
+        DiscountsRepository.new.all.each do |discount|
+          discount.call(order.line_items.includes(:product))
+        end
       end
 
       def calculate_total(order)

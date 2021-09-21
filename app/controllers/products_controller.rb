@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ordering/endpoints/buy_product'
-
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ destroy ]
 

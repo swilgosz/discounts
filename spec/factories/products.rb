@@ -10,7 +10,7 @@ FactoryBot.define do
 
     trait :strawberries do
       name { "Strawberies" }
-      code { "STR1" }
+      code { "SR1" }
       price { 5.00 }
     end
 

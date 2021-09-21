@@ -4,7 +4,7 @@ module Ordering
   class DiscountsRepository
     def all
       [
-        Discounts::OneFree.new
+        Discounts::OneFree.new,
         Discounts::CheaperStrawberries.new
       ]
     end

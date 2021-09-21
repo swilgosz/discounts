@@ -22,7 +22,8 @@ Rails.configuration.to_prepare do
 
     store.subscribe(
       Ordering::EventHandlers::OnItemAddedToBasket.new, to: [
-        Ordering::Events::ItemAddedToBasket
+        Ordering::Events::ItemAddedToBasket,
+        Ordering::Events::ItemRemoved
       ]
     )
   end

@@ -4,10 +4,15 @@ module Ordering
   module EventHandlers
     class OnItemAddedToBasket
       def call(event)
-        line_item =
-        case event.event_type
+        order =
+          case event.event_type
           when "Ordering::Events::ItemAddedToBasket"
-            create_item(event.data)
+            line_item = create_item(event.data)
+            line_item.order
+          when "Ordering::Events::ItemRemoved"
+            line_item = LineItem.find(event.data[:item_id])
+            line_item.destroy
+            line_item.order
           end
         apply_discounts(line_item.order)
         calculate_total(line_item.order)

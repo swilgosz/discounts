@@ -21,10 +21,12 @@ module Ordering
       end
 
       def publish_event(order_id, product_code)
+        product = Product.find_by(code: product_code)
         event = Ordering::Events::ItemAddedToBasket.new(
           data: {
             order_id: order_id,
             product_code: product_code,
+            price: product.price,
             quantity: 1
           }
         )

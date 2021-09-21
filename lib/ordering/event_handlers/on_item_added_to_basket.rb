@@ -15,14 +15,15 @@ module Ordering
         LineItem.create(
           order_id: data[:order_id],
           product_id: product.id,
+          price: data[:price],
           quantity: data[:quantity]
         )
       end
 
       def calculate_total(order)
         total =
-          order.line_items.includes(:product).
-            map { |li| li.quantity * li.product.price }.sum
+          order.line_items.
+            map { |li| li.quantity * li.price }.sum
         order.update(total: total)
       end
     end

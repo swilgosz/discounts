@@ -11,7 +11,7 @@ RSpec.describe Ordering::Endpoints::BuyProduct do
 
   describe '#call' do
     it 'publishes the event' do
-      endpoint.call(order: order.id, product: product.id)
+      endpoint.call(order: order.id, product: product.code)
       expect(event_store).to have_published(
         an_event(Ordering::Events::ItemAddedToBasket)
       ).in_stream("Order$#{order.id}")

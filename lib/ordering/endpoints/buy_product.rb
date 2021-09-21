@@ -6,8 +6,7 @@ module Ordering
   module Endpoints
     class BuyProduct
       def call(order:, product:)
-        line_item = LineItem.create(order_id: order, product_id: product, quantity: 1)
-        publish_event(line_item)
+        publish_event(order, product)
       end
 
       private
@@ -18,16 +17,16 @@ module Ordering
         @event_store = event_store
       end
 
-      def publish_event(line_item)
+      def publish_event(order_id, product_code)
         event = Ordering::Events::ItemAddedToBasket.new(
           data: {
-            order_id: line_item.order_id,
-            product_code: line_item.product.code,
+            order_id: order_id,
+            product_code: product_code,
             quantity: 1
           }
         )
 
-        stream_name = "Order$#{line_item.order_id}"
+        stream_name = "Order$#{order_id}"
         event_store.publish(event, stream_name: stream_name)
       end
     end

@@ -6,7 +6,6 @@ module Ordering
       def call(line_items)
         items = line_items.to_a
         strawberries = items.select { |i| strawberry?(i) }
-
         if strawberries.length < 3
           strawberries.each { |sr| sr.update(price: sr.product.price) }
         else

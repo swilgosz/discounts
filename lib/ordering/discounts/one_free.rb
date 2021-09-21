@@ -20,7 +20,7 @@ module Ordering
       private
 
       def tea?(item)
-        item.product.code == 'GT1'
+        item.product.code == 'GR1'
       end
 
       def discount_applied?(item)

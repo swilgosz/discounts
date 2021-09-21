@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :product do
     trait :green_tea do
-      code { "GT1" }
+      code { "GR1" }
       price  { "3.11" }
       name { "Green Tea" }
     end

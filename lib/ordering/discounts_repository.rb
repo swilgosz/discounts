@@ -5,7 +5,8 @@ module Ordering
     def all
       [
         Discounts::OneFree.new,
-        Discounts::CheaperStrawberries.new
+        Discounts::CheaperStrawberries.new,
+        Discounts::CheaperCoffee.new
       ]
     end
   end

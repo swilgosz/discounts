@@ -4,9 +4,13 @@ module Ordering
   module EventHandlers
     class OnItemAddedToBasket
       def call(event)
-        line_item = create_item(event.data)
-        calculate_total(line_item.order)
+        line_item =
+        case event.event_type
+          when "Ordering::Events::ItemAddedToBasket"
+            create_item(event.data)
+          end
         apply_discounts(line_item.order)
+        calculate_total(line_item.order)
       end
 
       private

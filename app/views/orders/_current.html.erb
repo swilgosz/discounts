@@ -1,9 +1,21 @@
 <h3>Your current order:</h3>
 
 <table>
+  <thead>
+    <tr>
+      <td>Code</td>
+      <td>Quantity</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
   <tbody>
     <% order.line_items.includes(:product).each do |item| %>
       <%= render item %>
     <% end %>
+    <tr>
+      <td></td>
+      <td>Total:</td>
+      <td><%= order.total %></td>
+    </tr>
   </tbody>
 </table>

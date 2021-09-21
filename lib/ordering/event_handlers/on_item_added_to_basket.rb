@@ -5,6 +5,7 @@ module Ordering
     class OnItemAddedToBasket
       def call(event)
         line_item = create_item(event.data)
+        calculate_total(line_item.order)
       end
 
       private
@@ -16,6 +17,13 @@ module Ordering
           product_id: product.id,
           quantity: data[:quantity]
         )
+      end
+
+      def calculate_total(order)
+        total =
+          order.line_items.includes(:product).
+            map { |li| li.quantity * li.product.price }.sum
+        order.update(total: total)
       end
     end
   end

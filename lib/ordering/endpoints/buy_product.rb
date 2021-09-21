@@ -6,7 +6,10 @@ module Ordering
   module Endpoints
     class BuyProduct
       def call(order:, product:)
+        # validate request parameters
+        # authorize
         publish_event(order, product)
+        # return success/failure value
       end
 
       private

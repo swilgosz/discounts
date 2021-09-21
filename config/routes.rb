@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   mount RailsEventStore::Browser => '/res' if Rails.env.development?
 
-  resources :products, only: [:new, :create, :destroy]
+  resources :products, only: [:new, :create, :destroy] do
+    member do
+      patch :buy
+    end
+  end
 
   root to: 'products#index'
 

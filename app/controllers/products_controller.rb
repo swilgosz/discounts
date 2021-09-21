@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'ordering/endpoints/buy_product'
+
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ destroy ]
 
@@ -22,6 +26,13 @@ class ProductsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
       end
     end
+  end
+
+  # PATCH /products/:id
+  def buy
+    endpoint = Ordering::Endpoints::BuyProduct.new
+    endpoint.call(order: @order.id, product: params[:id])
+    redirect_to root_url, notice: 'Your product had been added to the basket'
   end
 
   # DELETE /products/1 or /products/1.json

@@ -53,6 +53,7 @@ group :test do
   gem 'webdrivers'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'ruby_event_store-rspec'
 end
 
 gem 'rails_event_store', '~> 2.3.0'

@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
 
   # PATCH /products/:id
   def buy
-    endpoint = Ordering::Endpoints::BuyProduct.new
+    endpoint = Ordering::Endpoints::BuyProduct.new(event_store: Rails.configuration.event_store)
     endpoint.call(order: @order.id, product: params[:id])
     redirect_to root_url, notice: 'Your product had been added to the basket'
   end

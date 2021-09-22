@@ -21,7 +21,7 @@ Rails.configuration.to_prepare do
     store.subscribe_to_all_events(RailsEventStore::LinkByCausationId.new)
 
     store.subscribe(
-      Ordering::EventHandlers::OnItemAddedToBasket.new, to: [
+      Ordering::EventHandlers::BasketManager.new, to: [
         Ordering::Events::ItemAddedToBasket,
         Ordering::Events::ItemRemoved
       ]

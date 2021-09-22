@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Ordering::EventHandlers::OnItemAddedToBasket do
+RSpec.describe Ordering::EventHandlers::BasketManager do
   let(:order) { Order.create(status: :open) }
   let(:strawberies) { create :product, :strawberries }
 

@@ -2,7 +2,7 @@
 
 module Ordering
   module EventHandlers
-    class OnItemAddedToBasket
+    class BasketManager
       def call(event)
         order =
           case event.event_type

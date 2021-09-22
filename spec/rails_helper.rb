@@ -31,9 +31,6 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-  config.before do
-    Rails.configuration.event_store = RubyEventStore::Client.new(repository: RubyEventStore::InMemoryRepository.new)
-  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods

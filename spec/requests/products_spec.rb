@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'ordering/endpoints/buy_product'
 
 RSpec.describe "/", type: :request do
-  let!(:product) { Product.create(code: 'GT1', price: 3.00, name: 'Green Tea') }
+  let!(:product) { create :product, :green_tea }
   let!(:order) { Order.create(status: :open)}
   let!(:line_item) { LineItem.create(product: product, order: order, quantity: 1) }
 
@@ -16,9 +16,11 @@ RSpec.describe "/", type: :request do
   describe "POST /buy" do
     context "with valid parameters" do
       it "creates a new LineItem" do
-        expect_any_instance_of(Ordering::Endpoints::BuyProduct).to receive(:call).with(order: order.id, product: product.id.to_s).and_call_original
+        expect_any_instance_of(Ordering::Endpoints::BuyProduct).to(
+          receive(:call).with(order: order.id, product: product.code).and_call_original
+        )
         expect {
-          patch buy_product_url(product)
+          patch buy_product_url(product.code)
         }.to change(order.reload.line_items, :count).by(1)
       end
     end

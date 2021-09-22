@@ -19,7 +19,7 @@
         <td><%= product.name %></td>
         <td><%= product.price %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= button_to 'BUY', buy_product_path(product.code), method: :patch, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'BUY', buy_product_path(product.code), method: :patch %></td>
       </tr>
     <% end %>
   </tbody>

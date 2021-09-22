@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :line_items, only: :destroy
   resources :orders, only: [:index]
+  resource :order, only: [] do
+    patch :close
+  end
 
   mount RailsEventStore::Browser => '/res' if Rails.env.development?
 

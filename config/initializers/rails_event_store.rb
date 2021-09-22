@@ -26,6 +26,11 @@ Rails.configuration.to_prepare do
         Ordering::Events::ItemRemoved
       ]
     )
+    store.subscribe(
+      Ordering::EventHandlers::OnOrderClosed.new, to: [
+        Ordering::Events::OrderClosed
+      ]
+    )
   end
 
   # Register command handlers below

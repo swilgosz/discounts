@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Ordering::Discounts::OneFree do
   describe '#call' do
-    let(:order) { create :order }
+    let(:order) { create :order, status: :open }
     let(:tea) { create :product, :green_tea }
 
     subject(:discount) { described_class.new }
